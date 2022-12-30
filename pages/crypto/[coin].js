@@ -98,7 +98,7 @@ export default function Coin() {
                                     Data used to create candlestick charts, which are a type of chart used to visualize price movements of a security or currency.
                                 </p>
                                 <select className='w3-select' onInput={set_interval_1}>
-                                    {OPT && OPT.map(OP => <option value={OP}>{OP}</option>)}
+                                    {OPT && OPT.map(OP => <option key={OP} value={OP}>{OP}</option>)}
                                 </select>
                                 <div className='w3-padding'>
                                     MAX : <input className="w3-check" type="checkbox" onClick={set_limit_1} />
@@ -120,7 +120,7 @@ export default function Coin() {
                                 Data displayed in UIKlines charts, which are used to display financial data such as stock prices or exchange rates.
                             </p>
                             <select className='w3-select' onInput={set_interval_2}>
-                                {OPT && OPT.map(OP => <option value={OP}>{OP}</option>)}
+                                {OPT && OPT.map(OP => <option key={OP} value={OP}>{OP}</option>)}
                             </select>
                             <div className='w3-padding'>
                                 MAX : <input className="w3-check" type="checkbox" onClick={set_limit_2} />
