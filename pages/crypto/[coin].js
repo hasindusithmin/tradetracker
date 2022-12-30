@@ -10,8 +10,10 @@ export default function Coin() {
 
     const ROUTER = useRouter()
     const [COIN, SET_COIN] = useState(null)
-    const [INTERVAL, SET_INTERVAL] = useState(null)
-    const [LIMIT, SET_LIMIT] = useState(500)
+    const [INTERVAL_1, SET_INTERVAL_1] = useState(null)
+    const [LIMIT_1, SET_LIMIT_1] = useState(500)
+    const [INTERVAL_2, SET_INTERVAL_2] = useState(null)
+    const [LIMIT_2, SET_LIMIT_2] = useState(500)
 
     const URL = 'https://cryptomarketapi.deta.dev';
     const OPT = ['1s', '1m', '3m', '5m', '15m', '30m', '1h', '2h', '4h', '6h', '8h', '12h', '1d', '3d', '1w', '1M']
@@ -20,14 +22,22 @@ export default function Coin() {
         SET_COIN(coin)
     }, [])
 
-    const set_interval = e => {
-        SET_INTERVAL(e.target.value)
-        console.log(e.target.value);
+    const set_interval_1 = e => {
+        SET_INTERVAL_1(e.target.value)
     }
 
-    const set_limit = e => {
-        if (LIMIT === 500) SET_LIMIT(1000)
-        else SET_LIMIT(500)
+    const set_limit_1 = e => {
+        if (LIMIT_1 === 500) SET_LIMIT_1(1000)
+        else SET_LIMIT_1(500)
+    }
+
+    const set_interval_2 = e => {
+        SET_INTERVAL_2(e.target.value)
+    }
+
+    const set_limit_2 = e => {
+        if (LIMIT_2 === 500) SET_LIMIT_2(1000)
+        else SET_LIMIT_2(500)
     }
 
     return (
@@ -87,15 +97,15 @@ export default function Coin() {
                                 <p className='w3-justify'>
                                     Data used to create candlestick charts, which are a type of chart used to visualize price movements of a security or currency.
                                 </p>
-                                <select className='w3-select' onInput={set_interval}>
+                                <select className='w3-select' onInput={set_interval_1}>
                                     {OPT && OPT.map(OP => <option value={OP}>{OP}</option>)}
                                 </select>
                                 <div className='w3-padding'>
-                                    MAX : <input className="w3-check" type="checkbox" onClick={set_limit} />
+                                    MAX : <input className="w3-check" type="checkbox" onClick={set_limit_1} />
                                 </div>
                                 {
-                                    COIN && INTERVAL &&
-                                    <Link href={`${URL}/candlestick-data?symbol=${COIN}usdt&interval=${INTERVAL}&limit=${LIMIT}`} className='w3-button w3-padding w3-round w3-green'>Download</Link>
+                                    COIN && INTERVAL_1 &&
+                                    <Link href={`${URL}/candlestick-data?symbol=${COIN}usdt&interval=${INTERVAL_1}&limit=${LIMIT_1}`} className='w3-button w3-padding w3-round w3-green'>Download</Link>
                                 }
                             </div>
                         </div>
@@ -109,15 +119,15 @@ export default function Coin() {
                             <p className='w3-justify'>
                                 Data displayed in UIKlines charts, which are used to display financial data such as stock prices or exchange rates.
                             </p>
-                            <select className='w3-select' onInput={set_interval}>
+                            <select className='w3-select' onInput={set_interval_2}>
                                 {OPT && OPT.map(OP => <option value={OP}>{OP}</option>)}
                             </select>
                             <div className='w3-padding'>
-                                MAX : <input className="w3-check" type="checkbox" onClick={set_limit} />
+                                MAX : <input className="w3-check" type="checkbox" onClick={set_limit_2} />
                             </div>
                             {
-                                COIN && INTERVAL &&
-                                <Link href={`${URL}/uiklines-data?symbol=${COIN}usdt&interval=${INTERVAL}&limit=${LIMIT}`} className='w3-button w3-padding w3-round w3-green'>Download</Link>
+                                COIN && INTERVAL_2 &&
+                                <Link href={`${URL}/uiklines-data?symbol=${COIN}usdt&interval=${INTERVAL_2}&limit=${LIMIT_2}`} className='w3-button w3-padding w3-round w3-green'>Download</Link>
                             }
                         </div>
                     </div>
