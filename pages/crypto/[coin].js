@@ -1,17 +1,34 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
-
-
+import { Inter } from '@next/font/google'
+import Image from 'next/image';
+import Link from 'next/link';
+const inter = Inter({ subsets: ['latin'] })
 
 export default function Coin() {
 
     const ROUTER = useRouter()
     const [COIN, SET_COIN] = useState(null)
+    const [INTERVAL, SET_INTERVAL] = useState(null)
+    const [LIMIT, SET_LIMIT] = useState(500)
+
+    const URL = 'https://cryptomarketapi.deta.dev';
+    const OPT = ['1s', '1m', '3m', '5m', '15m', '30m', '1h', '2h', '4h', '6h', '8h', '12h', '1d', '3d', '1w', '1M']
     useEffect(() => {
         const { coin } = ROUTER.query;
         SET_COIN(coin)
     }, [])
+
+    const set_interval = e => {
+        SET_INTERVAL(e.target.value)
+        console.log(e.target.value);
+    }
+
+    const set_limit = e => {
+        if (LIMIT === 500) SET_LIMIT(1000)
+        else SET_LIMIT(500)
+    }
 
     return (
         <>
@@ -23,41 +40,109 @@ export default function Coin() {
             </Head>
 
             <main>
-                {/* Recent Trades List,Aggregate Trades List,Candlestick Data,24hr Ticker Price Change Statistics ,Symbol Order Book Ticker */}
+
+                <div className={inter.className}>
+                    {
+                        COIN &&
+                        <>
+                            <h1 className='w3-center w3-opacity'><b>{COIN.toUpperCase() + 'USDT'}</b></h1>
+                            <div className='w3-center'>
+                                <Image src={`/icons/${COIN}.svg`} alt={COIN} width={100} height={100} />
+                            </div>
+                        </>
+                    }
+
+                </div>
+
                 <div className="w3-row-padding w3-center w3-margin-top">
-                    <div class="w3-third w3-padding">
-                        <div className='w3-card w3-round-large w3-padding'>
-                            Recent Trades List
+                    <div className={inter.className}>
+                        <div class="w3-third w3-padding">
+                            <div className='w3-card w3-round-large w3-padding'>
+                                <h3><b>Recent Trades List</b></h3>
+                                <p className='w3-justify'>
+                                    A list of trades that have recently occurred on a particular exchange or for a particular security.
+                                </p>
+                                {
+                                    COIN &&
+                                    <Link href={`${URL}/recent-trades?symbol=${COIN}usdt`} className='w3-button w3-padding w3-round w3-green'>Download</Link>
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div class="w3-third w3-padding">
-                        <div className='w3-card w3-round-large w3-padding'>
-                            Aggregate Trades List
-                        </div>
+                        <div class="w3-third w3-padding">
+                            <div className='w3-card w3-round-large w3-padding'>
+                                <h3><b>Aggregate Trades List</b></h3>
+                                <p className='w3-justify'>
+                                    A list of all trades that have occurred on a particular exchange or for a particular security over a specific period of time.
+                                </p>
+                                {
+                                    COIN &&
+                                    <Link href={`${URL}/aggregate-trades?symbol=${COIN}usdt`} className='w3-button w3-padding w3-round w3-green'>Download</Link>
+                                }
+                            </div>
 
-                    </div>
-                    <div class="w3-third w3-padding">
-                        <div className='w3-card w3-round-large w3-padding'>
-                            Candlestick Data
                         </div>
-
+                        <div class="w3-third w3-padding">
+                            <div className='w3-card w3-round-large w3-padding'>
+                                <h3><b>Candlestick Data</b></h3>
+                                <p className='w3-justify'>
+                                    Data used to create candlestick charts, which are a type of chart used to visualize price movements of a security or currency.
+                                </p>
+                                <select className='w3-select' onInput={set_interval}>
+                                    {OPT && OPT.map(OP => <option value={OP}>{OP}</option>)}
+                                </select>
+                                <div className='w3-padding'>
+                                    MAX : <input className="w3-check" type="checkbox" onClick={set_limit} />
+                                </div>
+                                {
+                                    COIN && INTERVAL &&
+                                    <Link href={`${URL}/candlestick-data?symbol=${COIN}usdt&interval=${INTERVAL}&limit=${LIMIT}`} className='w3-button w3-padding w3-round w3-green'>Download</Link>
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div className="w3-row-padding w3-center w3-margin-top">
                     <div class="w3-third w3-padding">
                         <div className=' w3-card w3-round-large w3-padding'>
-                            UiCandlestick Data
+                            <h3><b>UiCandlestick Data</b></h3>
+                            <p className='w3-justify'>
+                                Data displayed in UIKlines charts, which are used to display financial data such as stock prices or exchange rates.
+                            </p>
+                            <select className='w3-select' onInput={set_interval}>
+                                {OPT && OPT.map(OP => <option value={OP}>{OP}</option>)}
+                            </select>
+                            <div className='w3-padding'>
+                                MAX : <input className="w3-check" type="checkbox" onClick={set_limit} />
+                            </div>
+                            {
+                                COIN && INTERVAL &&
+                                <Link href={`${URL}/uiklines-data?symbol=${COIN}usdt&interval=${INTERVAL}&limit=${LIMIT}`} className='w3-button w3-padding w3-round w3-green'>Download</Link>
+                            }
                         </div>
                     </div>
                     <div class="w3-third w3-padding">
                         <div className='w3-card w3-round-large w3-padding'>
-                            24hr Ticker Price Change Statistics
+                            <h3><b>24hr Ticker Price Change Statistics</b></h3>
+                            <p className='w3-justify'>
+                                Statistics that show the price changes of a particular security or currency over a 24-hour period.
+                            </p>
+                            {
+                                COIN &&
+                                <Link href={`${URL}/ticker-price-change-24hr?symbols=${COIN}usdt`} className='w3-button w3-padding w3-round w3-green'>Download</Link>
+                            }
                         </div>
                     </div>
                     <div class="w3-third w3-padding">
                         <div className=' w3-card w3-round-large w3-padding'>
-                            Symbol Order Book Ticker
+                            <h3><b>Symbol Order Book Ticker</b></h3>
+                            <p className='w3-justify'>
+                                A real-time display of the orders in the order book for a particular security or currency on an exchange.
+                            </p>
+                            {
+                                COIN &&
+                                <Link href={`${URL}/order-book-ticker?symbols=${COIN}usdt`} className='w3-button w3-padding w3-round w3-green'>Download</Link>
+                            }
                         </div>
                     </div>
 
