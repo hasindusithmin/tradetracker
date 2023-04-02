@@ -10,6 +10,7 @@ import ATLModal from '../../modal/ATLModal';
 import TPCModal from '../../modal/TPCModal';
 import SOBModal from '../../modal/SOBModal';
 import CDModal from '../../modal/CDModal';
+import UCDModal from '../../modal/UCDModal';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,24 +30,6 @@ export default function Coin() {
         const { coin } = ROUTER.query;
         SET_COIN(coin)
     }, [COIN])
-
-    const set_interval_1 = e => {
-        SET_INTERVAL_1(e.target.value)
-    }
-
-    const set_limit_1 = e => {
-        if (LIMIT_1 === 500) SET_LIMIT_1(1000)
-        else SET_LIMIT_1(500)
-    }
-
-    const set_interval_2 = e => {
-        SET_INTERVAL_2(e.target.value)
-    }
-
-    const set_limit_2 = e => {
-        if (LIMIT_2 === 500) SET_LIMIT_2(1000)
-        else SET_LIMIT_2(500)
-    }
 
     // Recent Trades List
     const [reqRTL, setReqRTL] = useState([]);
@@ -169,7 +152,7 @@ export default function Coin() {
             if (window.navigator.userAgentData['mobile']) throw Error("Sorry, this feature is not yet ready for mobile devices")
             let url = `/api/ui-candlestick-data?symbol=${COIN + 'usdt'}&interval=${ucdTimeFrame}`
             if (ucdMax) {
-                url = `/api/candlestick-data?symbol=${COIN + 'usdt'}&interval=${ucdTimeFrame}&limit=1000`
+                url = `/api/ui-candlestick-data?symbol=${COIN + 'usdt'}&interval=${ucdTimeFrame}&limit=1000`
             }
             const res = await fetch(url);
             const { message } = await res.json();
@@ -177,7 +160,7 @@ export default function Coin() {
             const id = toast.loading('Processing...')
             setTimeout(() => {
                 toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
-                setReqCD(message);
+                setReqUCD(message);
             }, 1500)
             e.target.disabled = false;
         } catch (error) {
@@ -201,6 +184,8 @@ export default function Coin() {
             <TPCModal reqTPC={reqTPC} setReqTPC={setReqTPC} />
             <SOBModal reqSOB={reqSOB} setReqSOB={setReqSOB} />
             <CDModal reqCD={reqCD} setReqCD={setReqCD} />
+            <UCDModal reqUCD={reqUCD} setReqUCD={setReqUCD} />
+
 
             <main>
 

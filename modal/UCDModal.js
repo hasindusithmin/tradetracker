@@ -70,7 +70,7 @@ export default function UCDModal({ reqUCD, setReqUCD }) {
             <div className="w3-margin">
                 <div style={{ height: '500px', overflow: 'scroll' }}>
                     <DataTable
-                        title="Candlestick Data"
+                        title="UICandlestick Data"
                         columns={columns}
                         data={reqUCD}
                         pagination
