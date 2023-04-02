@@ -48,7 +48,7 @@ export default function Home() {
 
         <div className="w3-white w3-margin w3-card w3-round-large">
           <div className="w3-container w3-padding w3-black">
-            <h4>Tags</h4>
+            <h4><b>TAGS</b></h4>
           </div>
           <div className="w3-white">
             {
@@ -63,7 +63,7 @@ export default function Home() {
                           <div className="w3-col s2" key={COIN + Math.random()}>
                             <span className="w3-tag w3-margin-bottom w3-white" >
                               <Image src={`/icons/${COIN}.svg`} alt={COIN} width={32} height={32} title={COIN.toUpperCase()} />&nbsp;&nbsp;
-                              <Link href={`/crypto/${COIN}`} style={{textDecoration:'none'}}>
+                              <Link href={`/cryptov2/${COIN}`} style={{textDecoration:'none'}}>
                                 <span className='w3-small w3-tag w3-dark-grey w3-text-white w3-round-large'><b>{COIN.toUpperCase()}USDT</b></span> &nbsp;
                               </Link>
                             </span>
