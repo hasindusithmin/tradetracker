@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
 import { Inter } from '@next/font/google'
 import Image from 'next/image';
-import Link from 'next/link';
 import { ToastContainer, toast } from 'react-toastify';
 import RTLModal from '../../modal/RTLModal';
 import ATLModal from '../../modal/ATLModal';
@@ -11,7 +10,6 @@ import TPCModal from '../../modal/TPCModal';
 import SOBModal from '../../modal/SOBModal';
 import CDModal from '../../modal/CDModal';
 import UCDModal from '../../modal/UCDModal';
-
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Coin() {
@@ -199,7 +197,6 @@ export default function Coin() {
                             </div>
                         </>
                     }
-
                 </div>
 
                 <div className="w3-row-padding w3-center w3-margin-top">
