@@ -3,23 +3,20 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
 import { Inter } from '@next/font/google'
 import Image from 'next/image';
-import { ToastContainer, toast } from 'react-toastify';
 import RTLModal from '../../modal/RTLModal';
 import ATLModal from '../../modal/ATLModal';
 import TPCModal from '../../modal/TPCModal';
 import SOBModal from '../../modal/SOBModal';
 import CDModal from '../../modal/CDModal';
 import UCDModal from '../../modal/UCDModal';
+import { ToastContainer, toast } from 'react-toastify';
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Coin() {
 
     const ROUTER = useRouter()
     const [COIN, SET_COIN] = useState(null)
-    const [INTERVAL_1, SET_INTERVAL_1] = useState(null)
-    const [LIMIT_1, SET_LIMIT_1] = useState(500)
-    const [INTERVAL_2, SET_INTERVAL_2] = useState(null)
-    const [LIMIT_2, SET_LIMIT_2] = useState(500)
 
     const URL = 'https://cryptomarketapi.deta.dev';
     const OPT = ['1s', '1m', '3m', '5m', '15m', '30m', '1h', '2h', '4h', '6h', '8h', '12h', '1d', '3d', '1w', '1M']
@@ -115,7 +112,7 @@ export default function Coin() {
 
     // Candlestick Data
     const [reqCD, setReqCD] = useState([]);
-    const [cdTimeFrame, setCdTimeFrame] = useState(null);
+    const [cdTimeFrame, setCdTimeFrame] = useState('');
     const [cdMax, setCdMax] = useState(false);
     const fetchCD = async (e) => {
         try {
@@ -142,7 +139,7 @@ export default function Coin() {
 
     // UICandlestick Data
     const [reqUCD, setReqUCD] = useState([]);
-    const [ucdTimeFrame, setUcdTimeFrame] = useState(null);
+    const [ucdTimeFrame, setUcdTimeFrame] = useState('');
     const [ucdMax, setUcdMax] = useState(false);
     const fetchUcd = async (e) => {
         try {
@@ -198,6 +195,7 @@ export default function Coin() {
                         </>
                     }
                 </div>
+
 
                 <div className="w3-row-padding w3-center w3-margin-top">
                     <div className={inter.className}>

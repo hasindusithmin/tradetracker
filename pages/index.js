@@ -6,11 +6,12 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import Search from '../components/Search';
+import { useRouter } from 'next/router';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
-  const [GROUPS, SET_GROUPS] = useState(null)
+  const [GROUPS, SET_GROUPS] = useState(null);
   useEffect(() => {
     const _ = Object.values(ICONS).reduce((acc, curr) => {
       if (acc.length === 0 || acc[acc.length - 1].length === 6) {
