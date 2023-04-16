@@ -41,7 +41,7 @@ export default function Home() {
           </p>
           <p className='w3-row'>
             <p className='w3-third w3-center'>
-              <Image src="/crypto.gif" alt="crypto" className='w3-round-large' width={500} height={281} />
+              <Image src="/crypto.gif" alt="crypto" className='w3-round-large w3-image' width={500} height={281} />
             </p>
             <p className='w3-twothird'>
               <p>
