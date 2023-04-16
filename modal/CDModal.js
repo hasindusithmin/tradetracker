@@ -66,7 +66,7 @@ export default function CDModal({ reqCD, setReqCD }) {
 
 
     return (
-        <Rodal visible={reqCD.length > 0} onClose={() => { setReqCD([]) }} width={800} height={600}>
+        <Rodal visible={reqCD.length > 0} onClose={() => { setReqCD([]) }} width={1200} height={600}>
             <div className="w3-margin">
                 <div style={{ height: '500px', overflow: 'scroll' }}>
                     <DataTable

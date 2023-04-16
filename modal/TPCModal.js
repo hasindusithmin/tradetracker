@@ -18,7 +18,7 @@ export default function TPCModal({ reqTPC, setReqTPC }) {
 
 
     return (
-        <Rodal visible={Object.keys(reqTPC).length > 0} onClose={() => { setReqTPC({}) }} width={800} height={600}>
+        <Rodal visible={Object.keys(reqTPC).length > 0} onClose={() => { setReqTPC({}) }} width={1200} height={600}>
             <div className="w3-margin">
                 <div style={{ height: '500px', overflowY: 'scroll' }}>
                     <h3>24hr Ticker Price Change</h3>

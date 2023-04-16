@@ -18,7 +18,7 @@ export default function SOBModal({ reqSOB, setReqSOB }) {
 
 
     return (
-        <Rodal visible={Object.keys(reqSOB).length > 0} onClose={() => { setReqSOB({}) }} width={800} height={600}>
+        <Rodal visible={Object.keys(reqSOB).length > 0} onClose={() => { setReqSOB({}) }} width={1200} height={600}>
             <div className="w3-margin">
                 <div style={{ height: '500px', overflowY: 'scroll' }}>
                     <h3>Symbol Order Book</h3>

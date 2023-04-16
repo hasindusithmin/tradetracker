@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import ICONS from "../public/icons.json";
 import autoComplete from '@tarekraafat/autocomplete.js';
 import { useRouter } from 'next/navigation';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Search({ hideHeader }) {
 
@@ -47,6 +48,10 @@ export default function Search({ hideHeader }) {
     const findCoin = () => {
         const availableCoin = Object.keys(ICONS);
         const selectCoin = document.getElementById('autoComplete').value;
+        if (!selectCoin) {
+            toast.error("Please enter coin name", { autoClose: 1000, hideProgressBar: true })
+            return
+        }
         if (!availableCoin.includes(selectCoin)) {
             toast.error("Coin not exists", { autoClose: 1000, hideProgressBar: true })
             return

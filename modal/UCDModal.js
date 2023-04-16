@@ -66,7 +66,7 @@ export default function UCDModal({ reqUCD, setReqUCD }) {
 
 
     return (
-        <Rodal visible={reqUCD.length > 0} onClose={() => { setReqUCD([]) }} width={800} height={600}>
+        <Rodal visible={reqUCD.length > 0} onClose={() => { setReqUCD([]) }} width={1200} height={600}>
             <div className="w3-margin">
                 <div style={{ height: '500px', overflow: 'scroll' }}>
                     <DataTable

@@ -35,22 +35,29 @@ export default function Home() {
       <ToastContainer />
       <main>
 
-        <div className="w3-white w3-margin w3-card w3-round-large w3-padding">
-          <p className={inter.className}>
+        <div className={`${inter.className} w3-white w3-margin w3-card w3-round-large w3-padding`}>
+          <p className="w3-center w3-large" style={{ fontWeight: 500 }}>
             Welcome to tradetracker for downloading cryptocurrency market data! Our goal is to provide a simple and convenient way for users to access the latest information on a wide range of cryptocurrencies.
           </p>
-          <p className={inter.className}>
-            On our home page, users can search for the specific cryptocurrency they are interested in or browse through a list of popular options. From there, they can access a range of data sources including the Recent Trades List, Aggregate Trades List, Candlestick Data, and 24hr Ticker Price Change Statistics, all of which can be downloaded as CSV files for further analysis.
-          </p>
-          <p className={inter.className}>
-            In addition to these core features, we also offer a symbol order book ticker and other market analysis tools to help users stay up-to-date on the latest trends and developments in the cryptocurrency market. Whether you're a casual investor or a professional trader, our web application has everything you need to make informed decisions about your cryptocurrency portfolio.
-          </p>
-          <p className={inter.className}>
-            We hope you find our web application useful and look forward to helping you stay on top of the ever-evolving world of cryptocurrencies.
+          <p className='w3-row'>
+            <p className='w3-third w3-center'>
+              <Image src="/crypto.gif" alt="crypto" className='w3-round-large' width={500} height={281} />
+            </p>
+            <p className='w3-twothird'>
+              <p>
+                On our home page, users can search for the specific cryptocurrency they are interested in or browse through a list of popular options. From there, they can access a range of data sources including the <code>Recent Trades List, Aggregate Trades List, Candlestick Data, and 24hr Ticker Price Change Statistics</code>, all of which can be downloaded as <code>CSV</code> files for further analysis.
+              </p>
+              <p>
+                In addition to these core features, we also offer a symbol order book ticker and other market analysis tools to help users stay up-to-date on the latest trends and developments in the cryptocurrency market. Whether you're a casual investor or a professional trader, our web application has everything you need to make informed decisions about your cryptocurrency portfolio.
+              </p>
+              <p>
+                We hope you find our web application useful and look forward to helping you stay on top of the ever-evolving world of cryptocurrencies.
+              </p>
+            </p>
           </p>
         </div>
 
-        <Search  hideHeader={false}/>
+        <Search hideHeader={false} />
 
         <div className="w3-white w3-margin w3-card w3-round-large">
           <div className="w3-container w3-padding w3-black">

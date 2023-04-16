@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import '../styles/black.css'
 import '../styles/autoComplete.min.css'
+import '../styles/datatable.css'
 import 'react-toastify/dist/ReactToastify.css';
 import 'rodal/lib/rodal.css';
 import Header from '../components/Header'

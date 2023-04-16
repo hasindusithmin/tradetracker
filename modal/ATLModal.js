@@ -53,7 +53,7 @@ export default function ATLModal({ reqATL, setReqATL }) {
 
 
     return (
-        <Rodal visible={reqATL.length > 0} onClose={() => { setReqATL([]) }} width={800} height={600}>
+        <Rodal visible={reqATL.length > 0} onClose={() => { setReqATL([]) }} width={1200} height={600}>
             <div className="w3-margin">
                 <div style={{ height: '500px', overflow: 'scroll' }}>
                     <DataTable

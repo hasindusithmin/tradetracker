@@ -50,7 +50,7 @@ export default function RTLModal({ reqRTL, setReqRTL }) {
 
 
     return (
-        <Rodal visible={reqRTL.length > 0} onClose={() => { setReqRTL([]) }} width={800} height={600}>
+        <Rodal visible={reqRTL.length > 0} onClose={() => { setReqRTL([]) }} width={1200} height={600}>
             <div className="w3-margin">
                 <div style={{ height: '500px', overflow: 'scroll' }}>
                     <DataTable
