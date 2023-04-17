@@ -31,16 +31,33 @@ export default function Coin() {
     const fetchRTL = async (e) => {
         try {
             e.target.disabled = true;
-            if (window.navigator.userAgentData['mobile']) throw Error("Sorry, this feature is not yet ready for mobile devices")
+            const id = toast.loading('Processing...')
             const res = await fetch(`/api/recent-trades-list?symbol=${COIN + 'usdt'}`)
             const { message } = await res.json();
             if (!res.ok) throw Error(message);
-            const id = toast.loading('Processing...')
-            setTimeout(() => {
+            if (window.navigator.userAgentData['mobile']) {
                 toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
-                setReqRTL(message);
-            }, 1500)
-            e.target.disabled = false;
+                toast.warning("Sorry, Preview is not yet ready for mobile devices", { autoClose: 1000 });
+                setTimeout(() => {
+                    let csvContent = "data:text/csv;charset=utf-8," + 'Id,price,Qty,QuoteQty,Time(UTC),IsBuyerMaker,IsBestMatch\n'
+                    csvContent += message.map(row => Object.values(row).join(",")).join("\n");
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", `RTL_${Date.now()}.csv`);
+                    document.body.appendChild(link);
+                    link.click();
+                    e.target.disabled = false;
+                }, 1000)
+                return
+            }
+            else {
+                setTimeout(() => {
+                    toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
+                    setReqRTL(message);
+                }, 1500)
+                e.target.disabled = false;
+            }
         } catch (error) {
             e.target.disabled = false;
             toast.error(error.message, { autoClose: 1500, hideProgressBar: true });
@@ -52,16 +69,32 @@ export default function Coin() {
     const fetchATL = async (e) => {
         try {
             e.target.disabled = true;
-            if (window.navigator.userAgentData['mobile']) throw Error("Sorry, this feature is not yet ready for mobile devices")
+            const id = toast.loading('Processing...')
             const res = await fetch(`/api/aggregate-trades-list?symbol=${COIN + 'usdt'}`)
             const { message } = await res.json();
             if (!res.ok) throw Error(message);
-            const id = toast.loading('Processing...')
-            setTimeout(() => {
+            if (window.navigator.userAgentData['mobile']) {
                 toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
-                setReqATL(message);
-            }, 1500)
-            e.target.disabled = false;
+                toast.warning("Sorry, Preview is not yet ready for mobile devices", { autoClose: 1000 });
+                setTimeout(() => {
+                    let csvContent = "data:text/csv;charset=utf-8," + 'tradeId,Price,Quantity,First tradeId,Last tradeId,Time(UTC),Was the buyer the maker,Was the trade the best price match\n'
+                    csvContent += message.map(row => Object.values(row).join(",")).join("\n");
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", `ATL_${Date.now()}.csv`);
+                    document.body.appendChild(link);
+                    link.click();
+                    e.target.disabled = false;
+                }, 1000)
+            }
+            else {
+                setTimeout(() => {
+                    toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
+                    setReqATL(message);
+                }, 1500)
+                e.target.disabled = false;
+            }
         } catch (error) {
             e.target.disabled = false;
             toast.error(error.message, { autoClose: 1500, hideProgressBar: true });
@@ -73,16 +106,32 @@ export default function Coin() {
     const fetchTPC = async (e) => {
         try {
             e.target.disabled = true;
-            if (window.navigator.userAgentData['mobile']) throw Error("Sorry, this feature is not yet ready for mobile devices")
+            const id = toast.loading('Processing...')
             const res = await fetch(`/api/ticker-price-change?symbol=${COIN + 'usdt'}`)
             const { message } = await res.json();
             if (!res.ok) throw Error(message);
-            const id = toast.loading('Processing...')
-            setTimeout(() => {
+            if (window.navigator.userAgentData['mobile']) {
                 toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
-                setReqTPC(message);
-            }, 1500)
-            e.target.disabled = false;
+                toast.warning("Sorry, Preview is not yet ready for mobile devices", { autoClose: 1000 });
+                setTimeout(() => {
+                    let csvContent = "data:text/csv;charset=utf-8," + 'symbol,priceChange,priceChangePercent,weightedAvgPrice,prevClosePrice,lastPrice,lastQty,bidPrice,bidQty,askPrice,askQty,openPrice,highPrice,lowPrice,volume,quoteVolume,openTime,closeTime,firstId,lastId,count\n'
+                    csvContent += [message].map(row => Object.values(row).join(",")).join("\n");
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", `TPC_${Date.now()}.csv`);
+                    document.body.appendChild(link);
+                    link.click();
+                    e.target.disabled = false;
+                }, 1000)
+            }
+            else {
+                setTimeout(() => {
+                    toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
+                    setReqTPC(message);
+                }, 1500)
+                e.target.disabled = false;
+            }
         } catch (error) {
             e.target.disabled = false;
             toast.error(error.message, { autoClose: 1500, hideProgressBar: true });
@@ -94,16 +143,32 @@ export default function Coin() {
     const fetchSOB = async (e) => {
         try {
             e.target.disabled = true;
-            if (window.navigator.userAgentData['mobile']) throw Error("Sorry, this feature is not yet ready for mobile devices")
+            const id = toast.loading('Processing...')
             const res = await fetch(`/api/symbol-order-book?symbol=${COIN + 'usdt'}`)
             const { message } = await res.json();
             if (!res.ok) throw Error(message);
-            const id = toast.loading('Processing...')
-            setTimeout(() => {
+            if (window.navigator.userAgentData['mobile']) {
                 toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
-                setReqSOB(message);
-            }, 1500)
-            e.target.disabled = false;
+                toast.warning("Sorry, Preview is not yet ready for mobile devices", { autoClose: 1000 });
+                setTimeout(() => {
+                    let csvContent = "data:text/csv;charset=utf-8," + 'symbol,bidPrice,bidQty,askPrice,askQty\n'
+                    csvContent += [message].map(row => Object.values(row).join(",")).join("\n");
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", `SOB_${Date.now()}.csv`);
+                    document.body.appendChild(link);
+                    link.click();
+                    e.target.disabled = false;
+                }, 1000)
+            }
+            else {
+                setTimeout(() => {
+                    toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
+                    setReqSOB(message);
+                }, 1500)
+                e.target.disabled = false;
+            }
         } catch (error) {
             e.target.disabled = false;
             toast.error(error.message, { autoClose: 1500, hideProgressBar: true });
@@ -117,7 +182,7 @@ export default function Coin() {
     const fetchCD = async (e) => {
         try {
             e.target.disabled = true;
-            if (window.navigator.userAgentData['mobile']) throw Error("Sorry, this feature is not yet ready for mobile devices")
+            const id = toast.loading('Processing...')
             let url = `/api/candlestick-data?symbol=${COIN + 'usdt'}&interval=${cdTimeFrame}`
             if (cdMax) {
                 url = `/api/candlestick-data?symbol=${COIN + 'usdt'}&interval=${cdTimeFrame}&limit=1000`
@@ -125,12 +190,28 @@ export default function Coin() {
             const res = await fetch(url);
             const { message } = await res.json();
             if (!res.ok) throw Error(message);
-            const id = toast.loading('Processing...')
-            setTimeout(() => {
+            if (window.navigator.userAgentData['mobile']) {
                 toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
-                setReqCD(message);
-            }, 1500)
-            e.target.disabled = false;
+                toast.warning("Sorry, Preview is not yet ready for mobile devices", { autoClose: 1000 });
+                setTimeout(() => {
+                    let csvContent = "data:text/csv;charset=utf-8," + 'openTime,open,high,low,close,volume,closeTime,Quote asset volume,Number of trades,Taker buy base asset volume\n'
+                    csvContent += message.map(row => Object.values(row).join(",")).join("\n");
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", `CD_${Date.now()}.csv`);
+                    document.body.appendChild(link);
+                    link.click();
+                    e.target.disabled = false;
+                }, 1000)
+            }
+            else {
+                setTimeout(() => {
+                    toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
+                    setReqCD(message);
+                }, 1500)
+                e.target.disabled = false;
+            }
         } catch (error) {
             e.target.disabled = false;
             toast.error(error.message, { autoClose: 1500, hideProgressBar: true });
@@ -144,7 +225,7 @@ export default function Coin() {
     const fetchUcd = async (e) => {
         try {
             e.target.disabled = true;
-            if (window.navigator.userAgentData['mobile']) throw Error("Sorry, this feature is not yet ready for mobile devices")
+            const id = toast.loading('Processing...')
             let url = `/api/ui-candlestick-data?symbol=${COIN + 'usdt'}&interval=${ucdTimeFrame}`
             if (ucdMax) {
                 url = `/api/ui-candlestick-data?symbol=${COIN + 'usdt'}&interval=${ucdTimeFrame}&limit=1000`
@@ -152,12 +233,28 @@ export default function Coin() {
             const res = await fetch(url);
             const { message } = await res.json();
             if (!res.ok) throw Error(message);
-            const id = toast.loading('Processing...')
-            setTimeout(() => {
+            if (window.navigator.userAgentData['mobile']) {
                 toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
-                setReqUCD(message);
-            }, 1500)
-            e.target.disabled = false;
+                toast.warning("Sorry, Preview is not yet ready for mobile devices", { autoClose: 1000 });
+                setTimeout(() => {
+                    let csvContent = "data:text/csv;charset=utf-8," + 'openTime,open,high,low,close,volume,closeTime,Quote asset volume,Number of trades,Taker buy base asset volume\n'
+                    csvContent += message.map(row => Object.values(row).join(",")).join("\n");
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", `UCD_${Date.now()}.csv`);
+                    document.body.appendChild(link);
+                    link.click();
+                    e.target.disabled = false;
+                }, 1000)
+            }
+            else {
+                setTimeout(() => {
+                    toast.update(id, { render: "Successfully", type: "success", isLoading: false, autoClose: 1000, hideProgressBar: true });
+                    setReqUCD(message);
+                }, 1500)
+                e.target.disabled = false
+            }
         } catch (error) {
             e.target.disabled = false;
             toast.error(error.message, { autoClose: 1500, hideProgressBar: true });
