@@ -23,6 +23,3 @@ We are constantly working to improve and expand the functionality of this web ap
 - The ability to download data for multiple cryptocurrencies at once
 - Advanced filtering and customization options for data downloads
 - Integration with popular cryptocurrency portfolio tracking tools
-
-### Support
-If you have any questions or issues while using this web application, please don't hesitate to contact us at [hasindusithmin64@gmail.com](mailto:hasindusithmin64@gmail.com). We are always here to help!
